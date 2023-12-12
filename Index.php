@@ -36,7 +36,7 @@ switch ($route) {
         break;
     case 'excluirproduto':  
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // $productsController->();
+            $productsController->deleteProduct();
         } else {
             $productsController->pageExcluir();
         }

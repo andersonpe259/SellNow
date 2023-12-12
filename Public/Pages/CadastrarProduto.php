@@ -9,7 +9,7 @@
     <?php include (__DIR__."/../Layouts/Menu.php") ?>
     <h1>Cadastrar Produto</h1>
     <div class="formulario">
-          <form action="Index.php?route=cadastrarproduto" method="post">
+          <form action="Index.php?route=cadastrarproduto" method="post" enctype="multipart/form-data">
               <div class="mb-3">
                 <label >Nome do Produto:</label>
                 <center><input type="text" name="name" id="name"></center>
@@ -22,6 +22,10 @@
                 <label >INFORMAÇÕES:</label>
               <center><input type="text" name="information" id="information"></center>
               </div>
+
+              <label for="imagem">Escolha uma imagem:</label>
+                <input type="file" name="imagem" id="imagem" accept="image/*">
+                <br>
               <center><button type="submit">Adicionar</button></center>
             </form>
           </div>

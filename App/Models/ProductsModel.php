@@ -2,7 +2,7 @@
 require_once (__DIR__."/../../Config/Factory/Model.php");
 
 class ProductsModel extends Model {
-    public function insertProduct($name, $value, $info) {
+    public function insertProduct($name, $value, $info, $img) {
 
         $statement = $this->con->prepare($this->query->insertProduct[0]);
 
@@ -11,6 +11,7 @@ class ProductsModel extends Model {
         $statement->bindValue(1, $name, SQLITE3_TEXT);
         $statement->bindValue(2, $value, SQLITE3_FLOAT);
         $statement->bindValue(3, $info, SQLITE3_TEXT);
+        $statement->bindValue(4, $img, SQLITE3_TEXT);
 
         // Executar a consulta
         $resultado = $statement->execute();
@@ -58,6 +59,15 @@ class ProductsModel extends Model {
         }
 
         return $rows;
+    }
+
+    public function deleteProduct($proId) {
+
+        $statement = $this->con->prepare($this->query->deleteProduct[0]);
+        $statement->bindValue(1, $proId, SQLITE3_INTEGER);
+       
+        // Executar a consulta
+        $resultado = $statement->execute();
     }
 }
 ?>

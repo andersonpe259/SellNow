@@ -10,40 +10,45 @@
     <?php include (__DIR__."/../Layouts/Menu.php") ?>
     <h1>Página Principal</h1>
 
-<?php if(!empty($products)):?>
-<?php foreach($products as $product => $value): ?>
-    <div class="acai-button" id="acaiButton<?= $value['pro_id'] ?>" onclick="abrirModal('modal<?= $value['pro_id'] ?>')">
-    <?= $value['pro_name'] ?>
-    </div>
+    <?php $varP = 0; ?>
+    <?php if(!empty($products)):?>
+    <?php foreach($products as $product => $value): ?>
+        <?php if($value['pro_active'] == 1): ?>
+            <?php $varP += 1; ?>
+            <div class="acai-button" id="acaiButton<?= $value['pro_id'] ?>" onclick="abrirModal('modal<?= $value['pro_id'] ?>')" style="background-image: url('<?= $basePath ?><?= $value['pro_cover'] ?>');">
+            <?= $value['pro_name'] ?>
+            </div>
 
-    <div class="modal" id="modal<?= $value['pro_id'] ?>">
-        <div class="modal-content">
-            <span class="close" onclick="fecharModal('modal<?= $value['pro_id'] ?>')">&times;</span>
-            <h2><?= $value['pro_name'] ?></h2>
-            <p><?= $value['pro_info'] ?></p>
-            <form action="Index.php?route=principal" method="post">
-                <label for="valor">Quantidade em peso(Kg):</label>
-                <input type="number" id="pesoP<?= $value['pro_id'] ?>" name="valor" step="0.01" required>
-                <input type="hidden" id="valorP<?= $value['pro_id'] ?>" name="valorP" value="<?= $value['pro_value'] ?>">
+            <div class="modal" id="modal<?= $value['pro_id'] ?>">
+                <div class="modal-content">
+                    <span class="close" onclick="fecharModal('modal<?= $value['pro_id'] ?>')">&times;</span>
+                    <h2><?= $value['pro_name'] ?></h2>
+                    <p><?= $value['pro_info'] ?></p>
+                    <form action="Index.php?route=principal" method="post">
+                        <label for="valor">Quantidade em peso(Kg):</label>
+                        <input type="number" id="pesoP<?= $value['pro_id'] ?>" name="valor" step="0.01" required>
+                        <input type="hidden" id="valorP<?= $value['pro_id'] ?>" name="valorP" value="<?= $value['pro_value'] ?>">
 
-                <div>
-                    <label for="resultado<?= $value['pro_id'] ?>">Valor total a pagar(R$):</label>
-                    <input type="text" id="resultado<?= $value['pro_id'] ?>" readonly value="" name="total">
-                    <input type="hidden" name="proId" value="<?= $value['pro_id'] ?>">
+                        <div>
+                            <label for="resultado<?= $value['pro_id'] ?>">Valor total a pagar(R$):</label>
+                            <input type="text" id="resultado<?= $value['pro_id'] ?>" readonly value="" name="total">
+                            <input type="hidden" name="proId" value="<?= $value['pro_id'] ?>">
+                        </div>
+
+                        <button type="button" onclick="calcularPeso(<?= $value['pro_id'] ?>)">Calcular</button>
+                        <button type="submit" >Confirmar</button>
+                    </form>
                 </div>
+            </div>
+        <?php endif; ?>
+    <?php endforeach; ?>
+    <?php endif; ?>
 
-                <button type="button" onclick="calcularPeso(<?= $value['pro_id'] ?>)">Calcular</button>
-                <button type="submit" >Confirmar</button>
-            </form>
-        </div>
-    </div>
-<?php endforeach; ?>
-<?php else: ?>
-    <h2>Sem produtos Cadastrados</h2>
-<?php endif; ?>
+    <?php if($varP == 0): ?>
+        <h2>Sem produtos Cadastrados</h2>
+    <?php endif; ?>
 
     <script>
-
 const acaiButton = document.getElementById('acaiButton');
 const acaiModal = document.getElementById('acaiModal');
 

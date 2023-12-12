@@ -15,7 +15,8 @@ class Querys{
             pro_name TEXT NOT NULL,
             pro_value REAL NOT NULL,
             pro_cover TEXT NOT NULL,
-            pro_info TEXT NOT NULL
+            pro_info TEXT NOT NULL,
+            pro_active INTEGER DEFAULT 1
         );
         CREATE TABLE tb_Historic (
             his_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -29,11 +30,11 @@ class Querys{
         "SELECT use_user, use_password FROM tb_User;"
     ];
     public $insertProduct = [
-        "INSERT INTO tb_Product (pro_name, pro_value, pro_cover, pro_info) VALUES (?, ?, 'teste', ?);"
+        "INSERT INTO tb_Product (pro_name, pro_value, pro_info, pro_cover) VALUES (?, ?, ?, ?);"
     ];
 
     public $selectProducts = [
-        "SELECT pro_id, pro_name, pro_value, pro_cover, pro_info FROM tb_Product;"
+        "SELECT pro_id, pro_name, pro_value, pro_cover, pro_info, pro_active FROM tb_Product;"
     ];
 
     public $insertHistoric = [
@@ -42,6 +43,10 @@ class Querys{
     
     public $selectHistoric = [
         "SELECT pro_name, his_total FROM tb_Product JOIN tb_Historic ON tb_Product.pro_id = tb_Historic.his_pro_id;"
+    ];
+
+    public $deleteProduct = [
+        "UPDATE tb_Product SET pro_active = 0 WHERE pro_id = ?;"
     ];
 
 }
