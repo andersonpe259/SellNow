@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../../Resources/Css/Style.css">
+    <title>SellNow</title>
 </head>
 <body>
     <?php include (__DIR__."/../Layouts/Menu.php") ?>
-    <h1>Cadastrar Produto</h1>
+   <center> <h1>Cadastrar Produto</h1>
     <div class="formulario">
           <form action="Index.php?route=cadastrarproduto" method="post" enctype="multipart/form-data">
               <div class="mb-3">

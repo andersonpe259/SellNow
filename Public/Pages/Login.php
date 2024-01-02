@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../../Resources/Css/Style.css">
+    <title>SellNow</title>
 </head>
 <body>
-
+    <div class="container">
         <div class="formulario">
-          <form action="Index.php?route=login" method="post">
-          <h1 class="title">Login</h1>
-              <div class="mb-3">
-                <label >EMAIL</label>
-                <center><input type="text" name="user" id="user"></center>
-              </div>
-              <div class="mb-3">
-                <label >SENHA</label>
-              <center><input type="password" name="password" id="password"></center>
-              </div>
-              <center><button type="submit">Logar</button></center>
+            <form action="Index.php?route=login" method="post" class="login-form">
+                <h1 class="title">Login no <span>SellNow</span></h1>
+                <div class="form-group">
+                    <label for="user">EMAIL</label>
+                    <input type="text" name="user" id="user" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="password">SENHA</label>
+                    <input type="password" name="password" id="password" class="form-control">
+                </div>
+                <button type="submit" class="btn-login">Logar</button>
             </form>
-          </div>
+        </div>
+    </div>
 </body>
 </html>
